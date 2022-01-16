@@ -11,43 +11,41 @@ const hold = document.querySelector('.hold');
 const dice = document.querySelector('.dice');
 const currentSpanLeft = document.querySelector('.current-span-left')
 const currentSpanRight = document.querySelector('.current-span-right')
-let playerOne = 0;
-let playerTwo = 0;
 let turn = 0;
 leftSpan.textContent = 0;
 rightSpan.textContent = 0;
-let rightCurrent = 0, leftCurrent = 0;
-// left.style.backgroundColor = "rgba(255, 255, 255, 0.55)";
-
+let rightCurrent = 0, leftCurrent = 0, playerOne = 0, playerTwo = 0
 roll.addEventListener('click', function() {
+  dice.classList.remove('hidden')
   let randomNum = Math.ceil(Math.random() * 6);
   if(randomNum == 1 && turn % 2 == 0) {
     dice.textContent = randomNum;
-    playerOne = 0;
-    currentSpanLeft.textContent = playerOne;
+    leftCurrent = 0
+    currentSpanLeft.textContent = leftCurrent;
     turn++;
-    left.style.backgroundColor = "rgba(255, 255, 255, 0.2)"
-    right.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
+    left.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+    right.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
   }
   else if(randomNum == 1 && turn % 2 != 0) {
     dice.textContent = randomNum;
-    playerTwo = 0;
-    currentSpanRight.textContent = playerTwo;
+    rightCurrent = 0;
+    currentSpanRight.textContent = rightCurrent;
     turn++;
     left.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
     right.style.backgroundColor = "rgba(255, 255, 255, 0.2)"
   }
   else if(turn % 2 == 0) {
-    
     dice.textContent = randomNum;
-    playerOne += randomNum;
-    currentSpanLeft.textContent = playerOne;
+    leftCurrent += randomNum
+    currentSpanLeft.textContent = leftCurrent;
     left.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+    right.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
   }
   else {
     dice.textContent = randomNum;
-    playerTwo += randomNum;
-    currentSpanRight.textContent = playerTwo;
+    rightCurrent += randomNum;
+    currentSpanRight.textContent = rightCurrent;
+    left.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
     right.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
   }
 })
@@ -55,17 +53,33 @@ hold.addEventListener('click', function() {
   if(turn % 2 == 0) {
     left.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
     right.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
-    leftCurrent += playerOne;
-    leftSpan.textContent = leftCurrent;
-    currentSpanLeft.textContent = 0;
+    playerOne += leftCurrent;
+    leftSpan.textContent = playerOne;
+    leftCurrent = 0;
+    currentSpanLeft.textContent = leftCurrent;
     turn++;
   }
   else {
     left.style.backgroundColor = "rgba(255, 255, 255, 0.5)"
     right.style.backgroundColor = "rgba(255, 255, 255, 0.2)"
-    rightCurrent += playerTwo;
-    rightSpan.textContent = rightCurrent
-    currentSpanRight.textContent = 0;
+    playerTwo += rightCurrent;
+    rightSpan.textContent = playerTwo;
+    rightCurrent = 0;
+    currentSpanRight.textContent = rightCurrent;
     turn++;
   }
+})
+
+newGame.addEventListener('click', function() {
+  dice.classList.add('hidden');
+  left.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+  right.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+  rightCurrent = 0;
+  leftCurrent = 0;
+  currentSpanRight.textContent = 0;
+  currentSpanLeft.textContent = 0;
+  rightSpan.textContent = 0;
+  leftSpan.textContent = 0;
+  playerOne = 0;
+  playerTwo = 0;
 })
