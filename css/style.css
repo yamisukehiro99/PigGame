@@ -111,6 +111,13 @@ button:hover {
   cursor: pointer;
 }
 
+.again {
+  width: 200px;
+  height: 80px;
+  top: 19px;
+  font-size: 40px;
+}
+
 .new-game {
   left: 50%;
   top: 5%;
@@ -158,6 +165,22 @@ button:hover {
   font-size: 60px;
 }
 
+.winner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: white;
+  transition: .5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #e42765;
+}
 
 .hidden {
   display: none;
